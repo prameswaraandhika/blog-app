@@ -5,7 +5,7 @@ import com.prameswaradev.blogapp.model.entity.Post;
 
 public class PostMapper {
 
-    public PostDto mappingToPostDto(Post post){
+    public static PostDto mappingToPostDto(Post post){
         return PostDto.builder()
                 .id(post.getId())
                 .title(post.getTitle())
@@ -17,7 +17,7 @@ public class PostMapper {
                 .build();
     }
 
-    public Post mappingToPost(PostDto postDto){
+    public static Post mappingToPost(PostDto postDto){
         return Post.builder()
                 .id(postDto.getId())
                 .title(postDto.getTitle())
