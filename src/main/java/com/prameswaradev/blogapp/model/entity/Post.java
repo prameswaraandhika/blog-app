@@ -1,4 +1,4 @@
-package com.prameswaradev.blogapp.model;
+package com.prameswaradev.blogapp.model.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -7,6 +7,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+
+import java.time.LocalDateTime;
 
 @Data
 @AllArgsConstructor
@@ -22,8 +24,8 @@ public class Post {
     private String content;
     private String description;
     @CreationTimestamp
-    private String createdOn;
+    private LocalDateTime createdOn;
     @UpdateTimestamp
-    private String updatedOn;
+    private LocalDateTime updatedOn;
 
 }
