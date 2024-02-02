@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static com.prameswaradev.blogapp.model.mapper.PostMapper.mappingToPost;
+
 @Service
 @RequiredArgsConstructor
 public class PostServiceImpl implements PostService{
@@ -23,5 +25,11 @@ public class PostServiceImpl implements PostService{
                 .stream()
                 .map(PostMapper::mappingToPostDto)
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public void create(PostDto postDto) {
+        Post post = mappingToPost(postDto);
+        postRepository.save(post);
     }
 }
