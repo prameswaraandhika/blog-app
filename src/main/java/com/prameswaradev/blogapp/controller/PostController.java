@@ -2,9 +2,11 @@ package com.prameswaradev.blogapp.controller;
 
 import com.prameswaradev.blogapp.model.dto.PostDto;
 import com.prameswaradev.blogapp.service.PostService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -32,7 +34,13 @@ public class PostController {
     }
     
     @PostMapping(value = "/admin/posts")
-    public String createPost(@ModelAttribute PostDto postDto){
+    public String createPost(@Valid @ModelAttribute("post") PostDto postDto,
+                             BindingResult bindingResult,
+                             Model model){
+        if (bindingResult.hasErrors()){
+            model.addAttribute("post", postDto);
+            return "admin/create_post";
+        }
         String url = getUrl(postDto.getTitle());
         postDto.setUrl(url);
         postService.create(postDto);

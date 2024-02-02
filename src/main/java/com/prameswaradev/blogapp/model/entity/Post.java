@@ -1,6 +1,7 @@
 package com.prameswaradev.blogapp.model.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -19,9 +20,14 @@ import java.time.LocalDateTime;
 public class Post {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @NotEmpty
     private String title;
+    @NotEmpty
     private String url;
+    @NotEmpty
     private String content;
+    @NotEmpty
     private String description;
     @CreationTimestamp
     private LocalDateTime createdOn;
