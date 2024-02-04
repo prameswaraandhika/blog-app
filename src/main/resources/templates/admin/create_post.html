@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <div th:replace="admin/header :: header"></div>
+
 <body>
-<div th:replace="admin/header :: navbar"></div>
+    <div th:replace="admin/header :: navbar"></div>
     <div class="container">
         <div class="row col-md-8 offset-md-2">
             <div class="card">
@@ -13,33 +14,20 @@
                     <form role="form" method="post" th:action="@{/admin/posts}" th:object="${post}">
                         <div class="mb-3">
                             <label class="form-label">Title </label>
-                            <input
-                                    type="text"
-                                    class="form-control"
-                                    id="title"
-                                    placeholder="E.g., 'Exploring the Future of Technology"
-                                    name="title"
-                                    th:field="*{title}">
+                            <input type="text" class="form-control" id="title"
+                                placeholder="E.g., 'Exploring the Future of Technology" name="title"
+                                th:field="*{title}">
                             <p th:if="${#fields.hasErrors('title')}" th:errors="*{title}" class="text-danger"></p>
                             <label class="form-label">Description </label>
-                            <textarea
-                                    type="text"
-                                    class="form-control"
-                                    id="textArea"
-                                    placeholder="Briefly describe your post"
-                                    name="description"
-                                    rows="3"
-                                    th:field="*{description}"></textarea>
-                            <p th:if="${#fields.hasErrors('description')}" th:errors="*{description}" class="text-danger"></p>
+                            <textarea type="text" class="form-control" id="textArea"
+                                placeholder="Briefly describe your post" name="description" rows="3"
+                                th:field="*{description}"></textarea>
+                            <p th:if="${#fields.hasErrors('description')}" th:errors="*{description}"
+                                class="text-danger"></p>
                             <label class="form-label">Content </label>
-                            <textarea
-                                    type="text"
-                                    class="form-control"
-                                    id="content"
-                                    placeholder="Share your detailed post content here"
-                                    name="content"
-                                    rows="13"
-                                    th:field="*{content}"></textarea>
+                            <textarea type="text" class="form-control" id="content"
+                                placeholder="Share your detailed post content here" name="content" rows="13"
+                                th:field="*{content}"></textarea>
                             <p th:if="${#fields.hasErrors('content')}" th:errors="*{content}" class="text-danger"></p>
                         </div>
                         <button type="submit" class="btn btn-primary">Publish Your Post</button>
@@ -47,11 +35,26 @@
                 </div>
             </div>
         </div>
+
     </div>
-<br/>
-<br/>
-<br/>
-<br/>
-<div th:replace="admin/footer :: footer"></div>
+    <br />
+    <br />
+    <br />
+    <br />
+    <div th:replace="admin/footer :: footer"></div>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+            integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/41.0.0/classic/ckeditor.js"></script>
+    <script>
+        ClassicEditor
+                .create( document.querySelector( '#content' ) )
+                .then( editor => {
+                        console.log( editor );
+                } )
+                .catch( error => {
+                        console.error( error );
+                } );
+    </script>
 </body>
+
 </html>
