@@ -38,4 +38,10 @@ public class PostServiceImpl implements PostService{
         var post = postRepository.findById(postId).get();
         return PostMapper.mappingToPostDto(post);
     }
+
+    @Override
+    public void updatePost(PostDto postDto) {
+        var post = PostMapper.mappingToPost(postDto) ;
+        postRepository.save(post);
+    }
 }
