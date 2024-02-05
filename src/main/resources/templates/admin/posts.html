@@ -23,7 +23,7 @@
             <td th:text="${post.description}"></td>
             <td th:text="${post.createdOn}"></td>
             <td>
-                <a href="@{/admin/posts/{postId}/edit(postId=${post.id})}"
+                <a th:href="@{/admin/posts/{postId}/edit(postId=${post.id})}"
                 class="btn btn-primary"> Edit</a>
             </td>
         </tr>
@@ -35,4 +35,5 @@
         crossorigin="anonymous"></script>
 </body>
 <div th:replace="~{admin/footer :: footer}"></div>
+
 </html>
