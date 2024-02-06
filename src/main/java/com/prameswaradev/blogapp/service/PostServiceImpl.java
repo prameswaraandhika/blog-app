@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static com.prameswaradev.blogapp.model.mapper.PostMapper.mappingToPost;
+import static java.util.stream.Collectors.toList;
 
 @Service
 @RequiredArgsConstructor
@@ -24,7 +25,7 @@ public class PostServiceImpl implements PostService{
         return posts
                 .stream()
                 .map(PostMapper::mappingToPostDto)
-                .collect(Collectors.toList());
+                .collect(toList());
     }
 
     @Override
@@ -55,5 +56,12 @@ public class PostServiceImpl implements PostService{
     public PostDto findByUrl(String postUrl) {
         Post post = postRepository.findByUrl(postUrl).get();
         return PostMapper.mappingToPostDto(post);
+    }
+
+    @Override
+    public List<PostDto> search(String query) {
+        List<Post> post = postRepository.searchPost(query);
+        return post.stream().map(PostMapper::mappingToPostDto)
+                .collect(toList());
     }
 }

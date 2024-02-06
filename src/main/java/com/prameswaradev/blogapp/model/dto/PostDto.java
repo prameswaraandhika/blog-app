@@ -19,7 +19,6 @@ public class PostDto {
     @NotEmpty(message = "Please provide a title")
     private String title;
 
-    @NotEmpty(message = "Please provide a URL")
     private String url;
 
     @NotEmpty(message = "Please provide content")

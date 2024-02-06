@@ -28,20 +28,20 @@ public class PostController {
     public String createPostForm(Model model){
         PostDto postDto = new PostDto();
         model.addAttribute("post", postDto);
-        return "/admin/create_post";
+        return "admin/create_post";
     }
     
     @PostMapping(value = "/admin/posts")
-    public String createPost(@Valid @ModelAttribute("post") PostDto postDto,
+    public String createPost(@Valid @ModelAttribute("post") PostDto post,
                              BindingResult bindingResult,
                              Model model){
         if (bindingResult.hasErrors()){
-            model.addAttribute("post", postDto);
+            model.addAttribute("post", post);
             return "admin/create_post";
         }
-        String url = getUrl(postDto.getTitle());
-        postDto.setUrl(url);
-        postService.create(postDto);
+        String url = getUrl(post.getTitle());
+        post.setUrl(url);
+        postService.create(post);
         return "redirect:/admin/posts";
     }
 
@@ -72,6 +72,14 @@ public class PostController {
         return "redirect:/admin/posts";
     }
 
+    @GetMapping(value = "/admin/posts/search")
+    public String searchPost(@RequestParam(value = "query") String query,
+                             Model model){
+        List<PostDto> posts = postService.search(query);
+        model.addAttribute("posts", posts);
+        return "admin/posts";
+    }
+    
     @GetMapping(value = "/admin/posts/{postUrl}/view")
     public String viewPost(@PathVariable("postUrl") String postUrl,
                            Model model){
