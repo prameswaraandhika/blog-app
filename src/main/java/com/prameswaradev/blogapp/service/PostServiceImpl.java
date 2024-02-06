@@ -50,4 +50,10 @@ public class PostServiceImpl implements PostService{
         var post = postRepository.findById(postId).get();
         postRepository.delete(post);
     }
+
+    @Override
+    public PostDto findByUrl(String postUrl) {
+        Post post = postRepository.findByUrl(postUrl).get();
+        return PostMapper.mappingToPostDto(post);
+    }
 }
