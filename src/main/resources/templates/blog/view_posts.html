@@ -23,6 +23,7 @@
                     <div class="card-body">
                         <span th:utext="${post.description}">
                         </span>
+
                         <a th:href="@{/post/{postUrl}(postUrl=${post.url})}"> Read more</a>
                     </div>
                 </div>
