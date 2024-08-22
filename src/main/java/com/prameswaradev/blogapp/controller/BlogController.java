@@ -36,7 +36,7 @@ public class BlogController {
     public String searchPosts(@RequestParam(value = "query") String query,
                               Model model){
         var posts = postService.search(query);
-        model.addAttribute("posts", "posts");
+        model.addAttribute("posts", posts);
         return "blog/view_posts";
     }
     

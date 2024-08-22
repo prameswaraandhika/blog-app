@@ -21,7 +21,7 @@
            </div>
         </div>
     </div>
-    br
+    <br>
     <table class="table table-striped table-hover">
         <thead class="table-danger">
         <th>#</th>
@@ -36,7 +36,7 @@
             <td th:text="${stat.count}"></td>
             <td th:text="${post.title}"></td>
             <td th:text="${post.description}"></td>
-            <td th:text="${post.createdOn}"></td>
+            <td th:text="${#temporals.format(post.createdOn, 'EEEE, dd MMM yyyy')}"></td>
             <td>
                 <a th:href="@{/admin/posts/{postId}/edit(postId=${post.id})}"
                 class="btn btn-primary"> Edit</a>
