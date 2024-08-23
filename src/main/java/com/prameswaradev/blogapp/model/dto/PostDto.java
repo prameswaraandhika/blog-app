@@ -1,5 +1,6 @@
 package com.prameswaradev.blogapp.model.dto;
 
+import jakarta.persistence.Column;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -15,7 +16,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 public class PostDto {
-    private Long id;
+    private String id;
     @NotEmpty(message = "Please provide a title")
     private String title;
 
@@ -26,6 +27,7 @@ public class PostDto {
 
     @NotEmpty(message = "Please provide a description")
     private String description;
+
     private LocalDateTime createdOn;
     private LocalDateTime updatedOn;
 }

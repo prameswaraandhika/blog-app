@@ -12,20 +12,15 @@ public class PostMapper {
                 .url(post.getUrl())
                 .description(post.getDescription())
                 .content(post.getContent())
-                .createdOn(post.getCreatedOn())
-                .updatedOn(post.getUpdatedOn())
                 .build();
     }
 
     public static Post mappingToPost(PostDto postDto){
         return Post.builder()
-                .id(postDto.getId())
                 .title(postDto.getTitle())
                 .url(postDto.getUrl())
                 .description(postDto.getDescription())
                 .content(postDto.getContent())
-                .createdOn(postDto.getCreatedOn())
-                .updatedOn(postDto.getUpdatedOn())
                 .build();
     }
 }
