@@ -2,10 +2,7 @@ package com.prameswaradev.blogapp.model.dto;
 
 import jakarta.persistence.Column;
 import jakarta.validation.constraints.NotEmpty;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -15,8 +12,10 @@ import java.time.LocalDateTime;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
 public class PostDto {
     private String id;
+    private String category;
     @NotEmpty(message = "Please provide a title")
     private String title;
 

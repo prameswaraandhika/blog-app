@@ -26,10 +26,14 @@ import java.util.Set;
 @Table(name = "post")@SQLDelete(sql = "UPDATE category SET status_record = 'INACTIVE' WHERE id=?")
 @Entity
 public class Post extends BaseEntity{
-    @NotEmpty
     @ManyToOne
     @JoinColumn(name = "category_id")
     private Category category;
+
+    @ManyToOne
+    @JoinColumn(name = "reading_list_id")
+    private ReadingList readingList;
+
     @NotEmpty
     private String title;
     @NotEmpty

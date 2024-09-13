@@ -1,6 +1,7 @@
 package com.prameswaradev.blogapp.controller;
 
 import com.prameswaradev.blogapp.model.dto.PostDto;
+import com.prameswaradev.blogapp.service.CategoryService;
 import com.prameswaradev.blogapp.service.PostService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -16,7 +17,12 @@ import java.util.List;
 public class PostController {
 
     private final PostService postService;
+    private final CategoryService categoryService;
 
+    @ModelAttribute("categories")
+    public void listCategory(Model model){
+        model.addAttribute("categories", categoryService.findAll() );
+    }
     @GetMapping(value = "/admin/posts")
     public String posts(Model model) {
         List<PostDto> posts = postService.findAllPosts();
@@ -46,14 +52,14 @@ public class PostController {
     }
 
     @GetMapping(value = "/admin/posts/{postId}/edit")
-    public String editPostForm(@PathVariable("postId") Long postId, Model model){
+    public String editPostForm(@PathVariable("postId") String postId, Model model){
         PostDto postDto = postService.findPostById(postId);
         model.addAttribute("post", postDto);
         return "admin/edit_post";
     }
 
     @PostMapping(value = "/admin/posts/{postId}")
-    public String updatePost(@PathVariable("postId") Long postId,
+    public String updatePost(@PathVariable("postId") String postId,
                              @Valid @ModelAttribute("post") PostDto postDto,
                              BindingResult bindingResult,
                              Model model){
@@ -67,7 +73,7 @@ public class PostController {
     }
 
     @GetMapping(value = "/admin/posts/{postId}/delete")
-    public String deletePost(@PathVariable("postId") Long postId){
+    public String deletePost(@PathVariable("postId") String postId){
         postService.deletePost(postId);
         return "redirect:/admin/posts";
     }
